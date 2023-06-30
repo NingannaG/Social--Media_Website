@@ -24,6 +24,7 @@
   padding: 0;
   margin: 0;
   list-style: none;
+  cursor: pointer;
 }
 
 .sidebarListItem {
@@ -42,6 +43,7 @@
   padding: 10px;
   border-radius: 5px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .sidebarHr {

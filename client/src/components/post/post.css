@@ -32,6 +32,8 @@
   font-size: 15px;
   font-weight: 500;
   margin: 0 10px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .postDate{

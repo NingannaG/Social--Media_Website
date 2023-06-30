@@ -13,7 +13,7 @@ import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
 
 function App() {
-  const { user } = useContext(AuthContext);
+  const { user,profileUser } = useContext(AuthContext);
   return (
     <Router>
       <Switch>
@@ -28,7 +28,7 @@ function App() {
           {!user ? <Redirect to="/" /> : <Messenger />}
         </Route>
         <Route path="/profile/:username">
-          <Profile />
+          <Profile profileUser={profileUser}/>
         </Route>
       </Switch>
     </Router>

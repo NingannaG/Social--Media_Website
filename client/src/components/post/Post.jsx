@@ -11,7 +11,8 @@ export default function Post({ post }) {
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser,dispatch } = useContext(AuthContext);
+  // console.log(post)
 
   useEffect(() => {
     setIsLiked(post.likes.includes(currentUser._id));
@@ -19,8 +20,11 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users?userId=${post.userId}`);
+      const res = await axios.get(`http://localhost:8800/api/users/${post.userId}`);
+      console.log("featch user.")
+      console.log(currentUser)
       setUser(res.data);
+      console.log(res.data)
     };
     fetchUser();
   }, [post.userId]);
@@ -32,12 +36,15 @@ export default function Post({ post }) {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
+  const profileToContext=()=>{
+    dispatch({type:"PROFILE",payload:user})
+  }
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <Link to={`/profile/${user.username}`}>
+            <Link to={`/profile/${user.username}`} style={{"textDecoration":"none"}}>
               <img
                 className="postProfileImg"
                 src={
@@ -48,7 +55,7 @@ export default function Post({ post }) {
                 alt=""
               />
             </Link>
-            <span className="postUsername">{user.username}</span>
+            <span className="postUsername" onClick={profileToContext}>{user?.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
@@ -57,7 +64,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img className="postImg" src={PF + post.img} alt="" />
+          <img className="postImg" src={post?.img} alt="" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

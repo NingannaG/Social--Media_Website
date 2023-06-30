@@ -1,3 +1,5 @@
+import { PortraitRounded } from "@material-ui/icons";
+
 export const LoginStart = (userCredentials) => ({
   type: "LOGIN_START",
 });
@@ -20,3 +22,7 @@ export const Unfollow = (userId) => ({
   type: "UNFOLLOW",
   payload: userId,
 });
+export const ProfileUser=(profile)=>({
+  type:"PROFILE",
+  payload:profile,
+})

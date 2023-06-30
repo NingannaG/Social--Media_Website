@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   user:JSON.parse(localStorage.getItem("user")) || null,
   isFetching: false,
   error: false,
+  profileUser:null,
 };
 
 
@@ -23,6 +24,7 @@ export const AuthContextProvider = ({ children }) => {
         user: state.user,
         isFetching: state.isFetching,
         error: state.error,
+        profileUser:state.profileUser,
         dispatch,
       }}
     >

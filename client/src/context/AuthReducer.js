@@ -36,6 +36,11 @@ const AuthReducer = (state, action) => {
           ),
         },
       };
+      case "PROFILE":
+        return {
+          ...state,
+          profileUser:action.payload
+        }
     default:
       return state;
   }
